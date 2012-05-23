@@ -1,0 +1,854 @@
+\documentclass{jsarticle}
+\begin{document}
+\section{2012/05/19 qpstudy}
+
+\subsection{だれでもわかるハードウェア : Akihiro Kuwano}
+
+大雑把な話をやります
+
+\subsubsection{自己紹介}
+
+\begin{itemize}
+\item
+  @kuwa\_tw
+\end{itemize}
+\subsubsection{コンピュータの５大要素}
+
+\begin{itemize}
+\item
+  入力
+\item
+  演算
+\item
+  制御
+\item
+  記憶
+\item
+  出力
+\end{itemize}
+\subsubsection{ノイマン型コンピュータ}
+
+\begin{itemize}
+\item
+  今のコンピュータの基礎
+\end{itemize}
+\subsubsection{コンピュータの基本構造}
+
+\begin{itemize}
+\item
+  5大要素が基本!!
+\end{itemize}
+\paragraph{入力 : キーボード}
+
+\begin{itemize}
+\item
+  ユーザからのデータ扱う
+\end{itemize}
+\paragraph{記憶 : HDD or SSD, メモリ}
+
+\begin{itemize}
+\item
+  入力したデータをCPUに渡すためなど、置いておく。
+\item
+  補助記憶・主記憶
+\end{itemize}
+\paragraph{演算 : CPU}
+
+\begin{itemize}
+\item
+  演算をする
+\end{itemize}
+\paragraph{制御 : CPU}
+
+\begin{itemize}
+\item
+  各ハードウェアの動作を制御
+\item
+  CPU と一緒になっている
+\end{itemize}
+\paragraph{出力 : ディスプレイ}
+
+\begin{itemize}
+\item
+  ユーザへの出力
+\end{itemize}
+\subsubsection{業務へ}
+
+\begin{itemize}
+\item
+  ボトルネック調査
+  \begin{itemize}
+  \item
+    CPU
+  \item
+    Memory
+  \item
+    Disk IO
+  \item
+    IO stat やらを見ます
+  \end{itemize}
+\item
+  効率の良いプログラム
+\item
+  効率の良いアーキテクチャ
+  \begin{itemize}
+  \item
+    効率が良いとは\ldots{}
+    コンピュータにとって,アーキテクチャにとって良いということ
+  \end{itemize}
+\end{itemize}
+\subsubsection{質疑応答}
+
+\begin{itemize}
+\item
+  ENIAC : 最初のコンピュータっぽいやつ
+  \begin{itemize}
+  \item
+    物理的な回路を組み替えまくってプログラミングする :
+    ハードウェアコーディング
+  \end{itemize}
+\item
+  トランジスタ : 切り替えスイッチだよー
+  \begin{itemize}
+  \item
+    分岐の処理とか
+  \item
+    昔は真空管だったよ
+  \end{itemize}
+\item
+  ボトルネック調査の具体例とかは?
+  \begin{itemize}
+  \item
+    入出力はコンピュータの性能とあまり関係がない
+  \item
+    単体を調べればいい場合 : CPU, Memory, Disk
+  \item
+    アーキテクチャを考える場合 : CPU と主記憶をつなぐ部分,
+    ディスクをつなぐバス部分 \ldots{}
+  \end{itemize}
+\end{itemize}
+\subsection{CPU の話 : sho kisaragi}
+
+CPU の動作を理解することで問題解析に役立てる
+
+\subsubsection{自己紹介}
+
+\begin{itemize}
+\item
+  @sho7650
+\item
+  カレー・パヒューム・深田恭子
+\item
+  CE -\textgreater{} ITスペシャリスト -\textgreater{} ITアーキテクト
+\end{itemize}
+\subsubsection{目的}
+
+\begin{itemize}
+\item
+  CPU の振るまいと原理
+\item
+  問題の解析
+\end{itemize}
+\subsubsection{コンピュータ}
+
+\begin{itemize}
+\item
+  5大要素
+\item
+  ノイマン型アーキテクチャ : プログラム内蔵型(?)
+\item
+  Processor
+\item
+  Programs
+\item
+  Data
+\end{itemize}
+\subsubsection{CPU}
+
+\begin{itemize}
+\item
+  CPU からの IO
+  \begin{itemize}
+  \item
+    I/O
+  \item
+    Memory
+  \end{itemize}
+\end{itemize}
+\subsubsection{CPU の動作 : 4つの原則}
+
+\begin{itemize}
+\item
+  Fetch
+  \begin{itemize}
+  \item
+    主記憶(Memory) から Data をとってくる
+  \end{itemize}
+\item
+  Decode
+  \begin{itemize}
+  \item
+    主記憶から取ってきた命令を回路で実行できる命令に変換する
+  \end{itemize}
+\item
+  Execute
+  \begin{itemize}
+  \item
+    変換した命令を実行する
+  \end{itemize}
+\item
+  Write back
+  \begin{itemize}
+  \item
+    (ものによって違うどこに返すかが違うが)出力を返す
+  \end{itemize}
+\end{itemize}
+\subsubsection{CPU Clock}
+
+\begin{itemize}
+\item
+  水晶(クオーツ)に電圧をかける
+\item
+  1 Clock ごとに動作が行われる
+\item
+  世界最速は 5.2 GHz : IBM
+\end{itemize}
+\paragraph{Pipeline}
+
+\begin{itemize}
+\item
+  1 Clockごとに、それぞれ1つ(Fetch〜Write back)を行う
+\item
+  Super Pipeline : fetch を 1 Clock
+\end{itemize}
+\paragraph{Super Scalar}
+
+\begin{itemize}
+\item
+  例えば、計算が全部足し算だったら一気にやればいい。
+\end{itemize}
+\paragraph{Out-of-Order}
+
+\begin{itemize}
+\item
+  処理に時間かかるものと、すぐ終わるものの順番を整理して、トータルで早くする。\\
+  例えば、5
+  個のタスクがあって、2番目だけがメモリ読み出しだったとする。\\
+  メモリの内容が、５番目まで使われないなら、並列に2と3,4番目のタスクをやれば良い。
+\end{itemize}
+\subsubsection{CISC vs RISC}
+
+\begin{itemize}
+\item
+  CISC : 回路を大きくする。命令豊富で何でもできるけど、1
+  Clockでできることが減る。
+\item
+  RISC : 回路を小さくする。回路は単純で、命令を組み合わせて、トータルで1
+  Clockになるくらい。
+\item
+  中はRISC で動いてるんだけど、外からの命令は CISC のように豊富にしてる?
+\end{itemize}
+\subsubsection{Peak CPU Clocks}
+
+\begin{itemize}
+\item
+  計算速度をあげる
+  \begin{itemize}
+  \item
+    光の速さ
+  \item
+    高電圧をかける -\textgreater{} 回路中で干渉して、計算するのが大変!!
+  \end{itemize}
+\end{itemize}
+\subsubsection{CPU がどんな風に動くか}
+
+\begin{itemize}
+\item
+  Z80 : 8 bit CPU で学んでみる
+\end{itemize}
+\paragraph{What is bit width?}
+
+\begin{itemize}
+\item
+  あんまり定義がない
+\item
+  1回の命令が 8bit とか。
+\item
+  命令セット 16 bit とかはありえる。
+\item
+  bit 数が増える -\textgreater{} 1回の命令で伝える内容が増える
+  -\textgreater{} 早くなるハズ
+\end{itemize}
+\paragraph{Machine Lang.}
+
+やっぱりマシン語を学ぼう\\* Assembler Lang.
+
+\paragraph{Register vs Memory}
+
+Register をどう使うか!? -\textgreater{} Assembler をやればわかる
+
+\begin{itemize}
+\item
+  PC(Program Counter) が実行してる箇所
+\end{itemize}
+\paragraph{Endian}
+
+\begin{itemize}
+\item
+  Big Endian : 順(``ABCD'' を ABCD でメモリに格納)
+\item
+  Little Endian : 普通の順(``ABCD'' を CDAB でメモリに格納)
+\item
+  とにかく、CPU によって格納のされ方がちがう
+\end{itemize}
+\paragraph{Aレジスタ (Accumulator)}
+
+\begin{itemize}
+\item
+  必ずここを経由して計算を行う \#\#\#\# Status (flug) Register
+\item
+  計算の結果を反映する
+\item
+  計算結果で繰り上がりがあったら、それを格納したり、
+\item
+  0 になったら、0 ということを格納する。
+\end{itemize}
+\subsubsection{Functions}
+
+\begin{itemize}
+\item
+  Data Transfer
+  \begin{itemize}
+  \item
+    Data Transfer(LD, PUSH, POP)
+  \item
+    Exchange
+  \item
+    Block Transfer
+  \end{itemize}
+\item
+  Data Processing
+  \begin{itemize}
+  \item
+    Arithmetric Operation(ADD,SUB,INC,DEC)
+  \item
+    Logical(AND,XOR,OR,CP)
+  \item
+    Skew(RL,RR,SLA,SRA)
+  \end{itemize}
+\item
+  Test and Jump
+  \begin{itemize}
+  \item
+    Jump(JP,JR,DZNJ,CALL,RET)
+  \item
+    TEST の結果はflagに入ってその結果を見て、Jumpする。
+  \end{itemize}
+\item
+  Input/Output
+  \begin{itemize}
+  \item
+    Input
+  \item
+    Output
+  \end{itemize}
+\item
+  Control
+  \begin{itemize}
+  \item
+    NOP,HALT
+  \end{itemize}
+\end{itemize}
+\subsubsection{Mnemonics and Operands}
+
+ex. Hello World
+
+\textbar{} Mnemonic \textbar{} Operand \textbar{} LD \textbar{}
+DE,0C000H \textbar{} LD \textbar{} HL,\#MSG LOOP: \textbar{} LD
+\textbar{} A,(HL) \textbar{} OR \textbar{} A \textbar{} RET \textbar{} Z
+\textbar{} LDI \textbar{} \textbar{} JR \textbar{} LOOP \ldots{}
+
+\subsubsection{Summary}
+
+\begin{itemize}
+\item
+  Assembler
+\item
+  English
+\item
+  いくつか違ってるものがあるかも。また、解釈の差があるかもしれません。
+\item
+  今日出たキーワードにつてい 自分で調べてください。
+\end{itemize}
+\subsection{コンピュータアーキテクチャ I/O 入門 : hasegawa さん}
+
+\subsubsection{自己紹介}
+
+\begin{itemize}
+\item
+  @hasegaw
+\item
+  Xen/KVM, FreeBSD virtio など
+\item
+  著書: いっぱい
+\end{itemize}
+\subsubsection{目標}
+
+\begin{itemize}
+\item
+  コンピュータにおける I/O
+\item
+  IA-32 での I/O の種類
+\item
+  入出力デバイスの種類など
+\end{itemize}
+\subsubsection{入出力とは何か}
+
+\begin{itemize}
+\item
+  I/O はコンピュータ(計算をするため)にとっては必須ではない
+\end{itemize}
+\subsubsection{入出力の基本}
+
+\begin{itemize}
+\item
+  I/O ポート
+\item
+  割り込み
+\item
+  Direct Memory Access
+\item
+  メモリマップド I/O
+\end{itemize}
+\subsubsection{I/O ポート}
+
+\begin{itemize}
+\item
+  コンピュータ出利用される古典的な入出力 例)
+  ポート60番にデータを送ると、その先のデバイスにデータが届く
+  ポート60番からインプットとかもできる。
+\item
+  プロセッサから外部に接続されるためのデジタルインターフェース
+\item
+  1 アドレス 8 ビットx64K, ON(1) or OFF(o) をつう有心
+\item
+  基本的に 8bit 単位なので低速
+\item
+  古いキーボード制御など
+\end{itemize}
+\subsubsection{割り込み}
+
+\begin{itemize}
+\item
+  デバイスからCPUへイベントを通知するための信号
+  \begin{itemize}
+  \item
+    IRQ 割り込み入力用の16本の信号線
+  \end{itemize}
+\item
+  割り込みハンドラ
+\item
+  例えばキーボードの状態が変わると、イベントが起きて、割り込みが発生するなど。
+\end{itemize}
+\subsubsection{16 ページ(資料公開待ち)}
+
+\begin{itemize}
+\item
+  int09\_handler : 割り込みハンドラ
+  キーが押されてないかのチェックをしたりする。 \_int09\_function
+  とかで読んでる?
+\end{itemize}
+\subsubsection{入出力装置をどのように使うのか}
+
+\begin{itemize}
+\item
+  高校の頃?のライト点灯システムの実装例
+\end{itemize}
+\subsubsection{メモリマップドI/O(MMIO)}
+
+\begin{itemize}
+\item
+  プロセッサの物理メモリ空間に、デバイス上のメモリ空間をマッピングする。
+\item
+  ソフトウェアからデバイス(普通のメモリに限らない)メモリにアクセスできる
+\end{itemize}
+\subsubsection{ダイレクトメモリアクセス(DMA)}
+
+\begin{itemize}
+\item
+  プロセッサの指示にしたがってDMAコントローラがデータ転送する
+\item
+  データ転送の開始時/終了時のみプロセッサが干渉するため、プロセッサが時間を節約できる。(他の仕事もできる)
+\end{itemize}
+\subsubsection{IRQ と MSI}
+
+\begin{itemize}
+\item
+  IRQ の数には制限がある
+  \begin{itemize}
+  \item
+    インテルの現在のものだと、たかだか15本しかない
+  \item
+    他の目的にも使われる部分があるため、複数デバイスで共有するしかない。
+  \item
+    共有してるとどのデバイスが割り込みを受けたかわからないかもしれない
+    -\textgreater{}
+    デバイスがフラグを持っていて、それを使って区別している。
+  \end{itemize}
+\item
+  キーボード、マウス、タイマ、\ldots{}.
+\end{itemize}
+\subsubsection{IRQ の共有}
+
+\begin{itemize}
+\item
+  割り込みが発生したデバイスのフラグが 1 になる。
+\item
+  割り込みが発生したら各ドライバのステータスをチェックし、必要なハンドラのみが実行される。
+\end{itemize}
+\subsubsection{バスとはなにか}
+
+\begin{itemize}
+\item
+  内部バス : CPU 内部
+\item
+  周辺回路 :
+\item
+  拡張バス : 外部デバイスとの接続
+\end{itemize}
+\subsubsection{PCI バス}
+
+\begin{itemize}
+\item
+  コンピュータを各種ハードウェアデバイスに接続するための標準仕様
+  \begin{itemize}
+  \item
+    32bit パラレル通信, 33MHz,帯域幅 133MB/s
+  \end{itemize}
+\item
+  プラグアンドプレイ
+  \begin{itemize}
+  \item
+    挿したら勝手に設定してくれる、とかいう方の意味
+  \end{itemize}
+\end{itemize}
+\subsubsection{PCI-Xバス}
+
+\begin{itemize}
+\item
+  PCI バスの上位互換
+\item
+  周波数とか、帯域がグレードアップ
+\end{itemize}
+\subsubsection{PCI Express}
+
+\begin{itemize}
+\item
+  複数レーンを束ねて使う
+\item
+  シリアル転送になった!!!! \&\& スピードアップ!!!!
+\item
+  1 レーンで250MB/s
+\item
+  4 レーンで1 GB/s, 16 レーンで 4GB/s
+\item
+  活線挿抜に対応
+\item
+  ソフトウェアレベルでのPCI 上位互換
+\end{itemize}
+* * 25GHz の周波数でデータをシリアル伝送 (1Clock 当たり 2ビット伝送)
+
+\subsubsection{PCI Express 2.0}
+
+\begin{itemize}
+\item
+  クロック 2倍!
+\item
+  16 レーンで8GB/sの帯域をサポート
+\item
+  IRQ の代わりに\ldots{} Message Signal Interrupt のサポートが必須に！
+\end{itemize}
+\paragraph{skew とは}
+
+\begin{itemize}
+\item
+  まず PCI Express は複数レーンを使っている。
+\item
+  各レーンごとに速度差があるかもしれないので、適当に同期を取る \&
+  データ順を考慮して復元しないといけない
+\end{itemize}
+\subsubsection{Message Signal Interrupt(MSI) \textless{}-
+この変更は仮想化環境に大きな影響があるに違いない!!パフォーマンスが上がる。}
+
+\begin{itemize}
+\item
+  メモリ書き込みにより、割り込みを通知する
+\item
+  PCIデバイス利用する
+\item
+  IRQ を使わない
+\item
+  コントローラが仮想的に普通と違うメモリ書き込みをしたら、CPUがフラグをチェックせずとも、どのデバイスに割り込みが発生したかわかる！
+\item
+  32 メッセージまで共存可能
+\item
+  Enhanced MSI(MSI-X)
+  \begin{itemize}
+  \item
+    PCI Express バス向けのMSI
+  \item
+    PCI Express 2.0 では実装必須
+  \item
+    2048 メッセージまで共存可能
+  \end{itemize}
+\end{itemize}
+\subsubsection{CPU間のインターコネクト}
+
+\begin{itemize}
+\item
+  マルチコア
+\item
+  マルチプロセッサ
+  \begin{itemize}
+  \item
+    UMA : 対称型マルチプロセッサ
+    \begin{itemize}
+    \item
+      どのCPUからでも同じ時間でアクセスできるが、全CPUでバスを共有する
+    \end{itemize}
+  \item
+    NUMA : 非対称メモリアクセス
+    \begin{itemize}
+    \item
+      近いデバイスには早くアクセスできるが、遠くのデバイスにはアクセスに時間がかかる
+    \item
+      バスの共有しない(?)か共有が少ないのか
+    \item
+      メモリとか増設するときにも、マルチプロセッサCPUだとどれかのCPUに近いやつとかあって気をつけよう。
+    \item
+      場合によっては遅くなる。チューニングを検討しよう
+    \end{itemize}
+  \end{itemize}
+\item
+  QPI (AMD)
+\item
+  HyperTransport (Intel)
+\end{itemize}
+\subsubsection{まとめ}
+
+\begin{itemize}
+\item
+  I/O とは
+  \begin{itemize}
+  \item
+    コンピュータのに対するデータ入出力の機能
+  \end{itemize}
+\item
+  代表的なI/O方法
+  \begin{itemize}
+  \item
+    I/Oポート, 割り込み
+  \item
+    メモリマップドI/O.DMA
+  \end{itemize}
+\item
+  バス
+  \begin{itemize}
+  \item
+    拡張バス
+    \begin{itemize}
+    \item
+      PCI, PCI-X, PCI Express \ldots{}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\subsubsection{I/O を勉強するには}
+
+\begin{itemize}
+\item
+  超初心者
+  \begin{itemize}
+  \item
+    Arduino
+  \item
+    本もいっぱい, キットも買える
+  \end{itemize}
+\item
+  初心者
+  \begin{itemize}
+  \item
+    PIC
+  \item
+    USB マイコンボード とかも売ってる
+  \end{itemize}
+\item
+  もっとガチな人
+  \begin{itemize}
+  \item
+    BeagleBoard
+  \end{itemize}
+\end{itemize}
+\subsection{インターフェース入門 shinonome}
+
+\subsubsection{自己紹介}
+
+\begin{itemize}
+\item
+  @H\_Shinonome
+\end{itemize}
+\subsubsection{資料が100 ページあるらしいので最初から挫折しておいた。}
+
+\subsubsection{RS-232C}
+
+\begin{itemize}
+\item
+  25 pin
+\item
+  9 pin のやつは標準規格に準拠してない。同期できないし。
+\item
+  同時送信数 : 1
+\end{itemize}
+\subsubsection{DB-60 : Cisco とかでよく見る}
+
+\begin{itemize}
+\item
+  60 pin
+\item
+  115200 bps
+\item
+  同時送信数 : 1
+\end{itemize}
+\subsubsection{どっちも同時送信数 1}
+
+\begin{itemize}
+\item
+  端子数多いのに\ldots{}
+  \begin{itemize}
+  \item
+    直接データ送受信しない端子
+  \item
+    同時に同じデータを複数端子で送る
+  \item
+    そもそも使ってない端子もある
+  \end{itemize}
+\item
+  信頼性の向上のため
+\end{itemize}
+\subsubsection{動作周波数}
+
+\begin{itemize}
+\item
+  33MHz =\textgreater{} 1 cycle : 30 nano sec
+\item
+  SDR : Single Data Rate
+\item
+  DDR : Double Data Rate
+\end{itemize}
+\subsubsection{通信速度は頭打ち}
+
+\begin{itemize}
+\item
+  費用対効果
+  \begin{itemize}
+  \item
+    半導体性能
+  \end{itemize}
+\end{itemize}
+\subsubsection{IEEE 1284}
+
+\begin{itemize}
+\item
+  25 pin
+\item
+  プリンタポートとして出たものを拡張した規格
+\item
+  同時送受信 8 bit
+\end{itemize}
+\subsubsection{SCSI}
+
+\begin{itemize}
+\item
+  50 pin
+\item
+  同時送受信 8 bit
+\end{itemize}
+\subsubsection{ATA}
+
+\begin{itemize}
+\item
+  40 pin
+\item
+  同時送受信 16 bit
+\end{itemize}
+↑ パラレルが抜いた\ldots{}
+
+\subsubsection{なぜシリアルに戻るのか}
+
+\begin{itemize}
+\item
+  半導体性能アップ
+\item
+  スキュー
+\end{itemize}
+\subsubsection{USB (Universal Sirial Bus)}
+
+\subsubsection{FireWire (IEEE 1394)}
+
+\subsubsection{S-ATA}
+
+\begin{itemize}
+\item
+  端子数: 7
+\item
+  通信速度: 1.5 Gbps - 6 Gbps
+\end{itemize}
+\subsubsection{SAS}
+
+\begin{itemize}
+\item
+  端子数: 7
+\item
+  通信速度: 1.5 Gbps - 6 Gbps
+\end{itemize}
+\subsubsection{Thunderbolt}
+
+\begin{itemize}
+\item
+  端子数: 20
+\item
+  通信速度: 10Gbps * 2
+\item
+  非同期パラレル通信
+\end{itemize}
+\subsubsection{InfiniBand}
+
+\begin{itemize}
+\item
+  端子数: 4-48
+\item
+  通信速度: 2Gbps - 163.64 Gbps
+\item
+  シリアル(1X),非同期パラレル(2X - 12X)
+\end{itemize}
+\subsubsection{最近の流行 : 非同期パラレル}
+
+\subsubsection{最後}
+
+左: SAS 右: SATA
+
+\begin{itemize}
+\item
+  違いを考えよう!!
+\end{itemize}
+\subsection{ニフティの宣伝}
+
+\subsubsection{Nifty Cloud C4SA}
+
+\begin{itemize}
+\item
+  5月末クローズドβ
+\item
+  APaaS + ブラウザ上のIDE + ソーシャル開発 的な感じ
+\end{itemize}
+
+\end{document}
