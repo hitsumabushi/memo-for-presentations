@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>My Preso</title>
+
+  <meta name="viewport" content="width=device-width"/>
+
+  <link rel="stylesheet" href="./css/reset.css" type="text/css"/>
+  <link rel="stylesheet" href="./css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src="./js/jquery-print.js"></script>
+  <script type="text/javascript" src="./js/jquery.batchImageLoad.js"></script>
+
+  <script type="text/javascript" src="./js/jquery.doubletap-0.1.js"></script>
+
+  <script type="text/javascript" src="./js/fg.menu.js"></script>
+  <script type="text/javascript" src="./js/showoff.js"></script>
+  <script type="text/javascript" src="./js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src="./js/sh_main.min.js"></script>
+  <script type="text/javascript" src="./js/core.js"></script>
+  <script type="text/javascript" src="./js/showoffcore.js"></script>
+  <script type="text/javascript" src="./js/coffee-script.js"></script>
+
+  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" >
+
+  
+
+  
+
+  <script type="text/javascript">
+  $(function(){
+      setupPreso(false, './');
+  });
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso">loading presentation...</div>
+<div id="footer">
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div class="slide" data-transition="none"><div class="content" ref="one/01_slide/1">
+<h1>PC&#x6B74;1&#x5E74;&#x3067;&#x4FBF;&#x5229;&#x306A;&#x30C4;&#x30FC;&#x30EB;</h1>
+
+<p>2012/05/19</p>
+
+<p><a href="https://twitter.com/#!/hitsumabushi_PC">@hitsumabushi_PC</a></p>
+
+<p><img src="./file/one/Fox.jpeg" width="120" height="120" height="120" width="120">
+<font size="5">(C) 2010 Mozilla Japan</font></img></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental small" ref="one/01_slide/2">
+<h1>&#x81EA;&#x5DF1;&#x7D39;&#x4ECB;</h1>
+
+<ul>
+<li>&#x9662;&#x751F;</li>
+<li>&#x666E;&#x6BB5;&#x306F;&#x8A08;&#x7B97;&#x6A5F;&#x3068;&#x95A2;&#x4FC2;&#x306A;&#x3044;</li>
+<li>IE &#x4EE5;&#x5916;&#x306E;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3092;&#x4F7F;&#x3044;&#x59CB;&#x3081;&#x3066;1&#x5E74;&#x304F;&#x3089;&#x3044;<br/>
+&#x2192; &#x8131;&#x7D20;&#x4EBA;&#x76EE;&#x6307;&#x3059;&#x3088;!</li>
+<li>&#x771F;&#x9762;&#x76EE;&#x306B;&#x30B5;&#x30FC;&#x30D0;&#x69CB;&#x7BC9;&#x3057;&#x305F;&#x306E;&#x306F;&#x3001; OpenLDAP &#x304F;&#x3089;&#x3044;</li>
+<li>&#x521D;&#x3081;&#x3066;&#x306E; LT</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental smaller" ref="one/01_slide/3">
+<h1>Firefox</h1>
+
+<ul>
+<li>vimperator : &#x30AF;&#x30A8;&#x30EA;&#x6295;&#x3052;&#x3066;&#x691C;&#x7D22;&#x3067;&#x304D;&#x308B;&#x3068;&#x3053;&#x308D;&#x306A;&#x3089;&#x7C21;&#x5358;&#x306B;&#x691C;&#x7D22;&#x304B;&#x3051;&#x3089;&#x308C;&#x308B;</li>
+<li>&#x30C4;&#x30EA;&#x30FC;&#x578B;&#x30BF;&#x30D6; : &#x7E26;&#x3092;&#x5E83;&#x304F;&#x4F7F;&#x3048;&#x308B;&#x3002;&#x90AA;&#x9B54;&#x306A;&#x3089;&#x96A0;&#x305B;&#x3070;&#x3044;&#x3044;&#x3002;</li>
+</ul>
+
+
+<p><img src="./file/one/fox.jpeg" width="578" height="411" height="150" width="150"><br/>
+<font size="5">(C) 2009 Mozilla Japan</font></img>
+</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental small" ref="one/01_slide/4">
+<h1>Git</h1>
+
+<ul>
+<li>hooks &#x304C;&#x4FBF;&#x5229;!</li>
+<li>&#x5B66;&#x751F;&#x306A;&#x306E;&#x3067; Github &#x3067;&#x30D7;&#x30E9;&#x30A4;&#x30D9;&#x30FC;&#x30C8;&#x30EA;&#x30DD;&#x30B8;&#x30C8;&#x30EA;&#x3082;&#x3089;&#x3048;&#x308B;!</li>
+<li>&#x53C2;&#x8003; : <a href="http://git-scm.com/book/ja">Pro Git</a></li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental small" ref="one/01_slide/5">
+<h1>&#x30BF;&#x30FC;&#x30DF;&#x30CA;&#x30EB;</h1>
+
+<ul>
+<li>zsh : &#x88DC;&#x5B8C;&#x304C;&#x8D85;&#x30AF;&#x30FC;&#x30EB; !!</li>
+<li>tmux : screen &#x304C;&#x96E3;&#x3057;&#x3059;&#x304E;&#x308B;...</li>
+<li>xclip,xsel : ssh &#x5148;&#x306B;&#x3082;&#x3042;&#x308C;&#x3070;&#x4FBF;&#x5229;</li>
+<li>man :
+
+<pre class="sh_shell"><code>man --html=(browser) hoge</code></pre></li>
+<li>&#x65E5;&#x672C;&#x8A9E; man &#x3092; pdf &#x3067;&#x8AAD;&#x307F;&#x305F;&#x3044;&#x306A;... (&#xB4;&#xFF65;_&#xFF65;`)</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental small" ref="one/01_slide/6">
+<h1>Markdown</h1>
+
+<ul>
+<li>Showoff : &#x3053;&#x306E;&#x30D7;&#x30EC;&#x30BC;&#x30F3;</li>
+<li>pandoc : markdown &#x2192; pdf &#x3068;&#x304B;</li>
+<li>octopress : &#x3044;&#x308D;&#x3044;&#x308D;&#x4F7F;&#x3063;&#x3066;&#x3001;markdown &#x3067;&#x30D6;&#x30ED;&#x30B0;&#x66F8;&#x3051;&#x308B;&#x3088;! Github Pages.</li>
+<li>&#x30AF;&#x30FC;&#x30EB;!!!!<br/>
+=&gt; vim + neocomplcache + quickrun.vim + qfixhowm + blogger.vim(Octopress) + Showoff + pandoc</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental small" ref="one/01_slide/7">
+<h1>&#x6700;&#x8FD1;&#x306E;&#x8208;&#x5473;</h1>
+
+<ul>
+<li>Ruby &amp;&amp; Ruby on Rails
+
+<pre><code>Rubyist &#x30AB;&#x30B3;&#x30A4;&#x30A4;!!
+&#x4F55;&#x304B;&#x4F5C;&#x308A;&#x305F;&#x3044;&#x3002;
+</code></pre></li>
+<li>OpenLDAP &#x3092;&#x771F;&#x9762;&#x76EE;&#x306B;&#x8ABF;&#x67FB;&#x3059;&#x308B;</li>
+<li>&#x305D;&#x308D;&#x305D;&#x308D; iptables &#x3092;&#x89E6;&#x3063;&#x3066;&#x884C;&#x304D;&#x305F;&#x3044;</li>
+<li>Zabbix &#x3068;&#x304B;&#x4F7F;&#x3044;&#x305F;&#x3044;</li>
+<li>&#x3084;&#x308A;&#x305F;&#x3044;&#x3053;&#x3068;&#x306F; <strong>&#x305F;&#x304F;&#x3055;&#x3093;</strong> &#x3042;&#x308B;!!</li>
+<li>&#x6642;&#x9593;&#x306F;&#x306A;&#x3044;!!!</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental small" ref="one/01_slide/8">
+<h1>&#x3086;&#x308B;&#x52DF;</h1>
+
+<ul>
+<li><a href="OpenLDAP%20Software%202.4%20Administrator's%20Guide">OpenLDAP Software 2.4 Administrator's Guide</a> &#x3092;&#x8A33;&#x3057;&#x306A;&#x304C;&#x3089;&#x4E00;&#x7DD2;&#x306B;&#x52C9;&#x5F37;&#x3057;&#x3088;&#x30FC;</li>
+<li>2.3 &#x3068;&#x5927;&#x304D;&#x304F;&#x5909;&#x308F;&#x3063;&#x3066;&#x3044;&#x308B;&#x7B87;&#x6240;&#x304C;&#x3042;&#x308B;</li>
+<li>&#x826F;&#x3044;&#x65E5;&#x672C;&#x8A9E;&#x306E;&#x672C;&#x304C;&#x51FA;&#x59CB;&#x3081;&#x305F;&#x306E;&#x3067;&#x3001;&#x9700;&#x8981;&#x306F;&#x306A;&#x3044;</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content bullets" ref="one/01_slide/9">
+<h1>&#x304A;&#x308F;&#x308A;!</h1>
+
+<ul>
+<li>Thanks !!!</li>
+</ul>
+
+</div>
+</div></div>
+
+</body>
+</html>
